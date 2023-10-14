@@ -1,5 +1,6 @@
 import requests
 
+from logging_example import logger
 from utils.prices import create_price_csv
 
 
@@ -8,7 +9,7 @@ def get_items_etopfun(account):
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'en-US,en;q=0.9',
         'Connection': 'keep-alive',
-        'Cookie': account['cookies'],
+        'Cookie': account['etopfun_cookie'],
         'Referer': 'https://www.etopfun.com/en/bag/',
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
@@ -26,9 +27,12 @@ def get_items_etopfun(account):
         'lang': 'en',
     }
 
-    response = requests.get('https://www.etopfun.com/api/user/inventory/730/list.do', params=params,
+    ROOT = 'https://www.etopfun.com/api/user/inventory/730/list.do'
+    response = requests.get(ROOT, params=params,
                             headers=headers)
 
     res = response.json()
     if res and res['code'] == 0:
         create_price_csv('w', res['datas']['list'])
+    else:
+        logger.error('API: {}, with errors: {}'.format(ROOT, res['errors']))

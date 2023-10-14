@@ -1,6 +1,7 @@
 import csv
+import os
 
-header = ['Name', 'Price 5e', 'Price TradeIT', 'Price Swap', 'Price Loot.farm', 'Recommend']
+header = ['name', 'etopfun_price', 'tradeit_price', 'swap_price', 'loot_price', 'recommend']
 
 
 def generate_data(items):
@@ -12,7 +13,9 @@ def generate_data(items):
 
 
 def create_price_csv(mode, items):
-    with open('prices.csv', mode, encoding='UTF8', newline='') as f:
+    ANALYTICS_FILENAME = os.getenv("ANALYTICS_FILENAME")
+
+    with open(ANALYTICS_FILENAME, mode, encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
 
         # write the header

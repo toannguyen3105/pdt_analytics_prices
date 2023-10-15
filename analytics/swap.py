@@ -1,11 +1,13 @@
 import requests
-from logging_example import logger
+from loggingUtil import logger
 from tempfile import NamedTemporaryFile
 import shutil
 import csv
 
 
 def update_items_swap(account):
+    logger.warning('Update price of [SWAP]')
+
     headers = {
         'authority': 'tradeit.gg',
         'accept': 'application/json, text/plain, */*',

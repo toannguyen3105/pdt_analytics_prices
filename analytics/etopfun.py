@@ -1,10 +1,12 @@
 import requests
 
-from logging_example import logger
+from loggingUtil import logger
 from utils.prices import create_price_csv
 
 
 def get_items_etopfun(account):
+    logger.warning('Get items from [ETOPFUN]')
+
     headers = {
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'en-US,en;q=0.9',
@@ -33,6 +35,7 @@ def get_items_etopfun(account):
 
     res = response.json()
     if res and res['code'] == 0:
-        create_price_csv('w', res['datas']['list'])
+        mode = 'a' if account['id'] != '1' else 'w'
+        create_price_csv(mode, res['datas']['list'])
     else:
         logger.error('API: {}, with errors: {}'.format(ROOT, res['errors']))

@@ -19,7 +19,8 @@ def create_price_csv(mode, items):
         writer = csv.writer(f)
 
         # write the header
-        writer.writerow(header)
+        if mode == 'w':
+            writer.writerow(header)
 
         # write multiple rows
         writer.writerows(generate_data(items))

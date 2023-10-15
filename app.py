@@ -7,6 +7,7 @@ from analytics.loot import update_items_loot
 from analytics.recommend import recommend_all_price
 from analytics.swap import update_items_swap
 from analytics.tradeit import update_items_trade_it
+from loggingUtil import logger
 
 load_dotenv()
 
@@ -34,8 +35,12 @@ def recommend_price():
 
 ACTIVE_USER = '1'
 with open('accounts.csv', newline='') as csvfile:
+    logger.warning('===== START APP =====')
+
     accountsReader = csv.DictReader(csvfile, delimiter='|')
     for account in accountsReader:
+        logger.warning('Cookie etopfun: {}'.format(account['etopfun_cookie']))
+
         if account['status'] == ACTIVE_USER:
             # Lay thong tin item trong bag cua etopfun
             get_items_in_bag(account)
@@ -45,3 +50,5 @@ with open('accounts.csv', newline='') as csvfile:
 
             # Cap nhat goi y
             recommend_price()
+
+    logger.warning('===== END APP =====')

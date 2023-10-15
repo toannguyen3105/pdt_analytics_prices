@@ -1,11 +1,13 @@
 import requests
-from logging_example import logger
+from loggingUtil import logger
 from tempfile import NamedTemporaryFile
 import shutil
 import csv
 
 
 def update_items_loot(account):
+    logger.warning('Update price of [LOOT]')
+
     headers = {
         'authority': 'loot.farm',
         'accept': '*/*',

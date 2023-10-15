@@ -2,9 +2,12 @@ import os
 from tempfile import NamedTemporaryFile
 import csv
 import shutil
+from loggingUtil import logger
 
 
 def recommend_all_price():
+    logger.warning('Recommend website')
+
     ETOPFUN_RATE = os.getenv("ETOPFUN_RATE")
     TRADEIT_RATE = os.getenv("TRADEIT_RATE")
     SWAP_RATE = os.getenv("SWAP_RATE")
@@ -22,6 +25,15 @@ def recommend_all_price():
             if row['name'] == 'name':
                 writer.writerow(row)
                 continue
+            if not row['etopfun_price'] or not row['tradeit_price'] or not row['swap_price'] or not row['loot_price']:
+                logger.error(
+                    'Errors!!! etopfun price: {}, tradeit price: {}, swap price: {}, loot price: {}'.format(
+                        row['etopfun_price'],
+                        row['tradeit_price'],
+                        row['swap_price'],
+                        row['loot_price']
+                    )
+                )
 
             etopfun_price = format(float(ETOPFUN_RATE) * float(row['etopfun_price']), '.2f')
             tradeit_price = format(float(TRADEIT_RATE) * float(row['tradeit_price']), '.2f')

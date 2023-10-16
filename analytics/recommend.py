@@ -18,7 +18,7 @@ def recommend_all_price():
 
     fields = ['name', 'etopfun_price', 'tradeit_price', 'swap_price', 'loot_price', 'recommend']
 
-    with open(filename, 'r') as csvfile, tempfile:
+    with open(filename, 'r', encoding='UTF8') as csvfile, tempfile:
         reader = csv.DictReader(csvfile, fieldnames=fields)
         writer = csv.DictWriter(tempfile, fieldnames=fields)
         for row in reader:

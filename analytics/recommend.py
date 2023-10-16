@@ -27,13 +27,15 @@ def recommend_all_price():
                 continue
             if not row['etopfun_price'] or not row['tradeit_price'] or not row['swap_price'] or not row['loot_price']:
                 logger.error(
-                    'Errors!!! etopfun price: {}, tradeit price: {}, swap price: {}, loot price: {}'.format(
+                    'Errors!!! Item {} has etopfun price: {}, tradeit price: {}, swap price: {}, loot price: {}'.format(
+                        row['name'],
                         row['etopfun_price'],
                         row['tradeit_price'],
                         row['swap_price'],
                         row['loot_price']
                     )
                 )
+                return
 
             etopfun_price = format(float(ETOPFUN_RATE) * float(row['etopfun_price']), '.2f')
             tradeit_price = format(float(TRADEIT_RATE) * float(row['tradeit_price']), '.2f')

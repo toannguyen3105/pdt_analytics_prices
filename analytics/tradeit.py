@@ -54,7 +54,7 @@ def update_items_trade_it(account):
             for row in reader:
                 for item in unique_items:
                     if item.get('name') == row['name']:
-                        row['tradeit_price'] = format(item['price'] / 100, '.2f')
+                        row['tradeit_price'] = format(item.get('price') / 100, '.2f')
                         break
                 row = {
                     'name': row['name'],

@@ -37,7 +37,7 @@ ACTIVE_USER = '1'
 with open('accounts.csv', newline='') as csvfile:
     logger.warning('===== START APP =====')
 
-    accountsReader = csv.DictReader(csvfile, delimiter='|')
+    accountsReader = csv.DictReader(csvfile, delimiter='~')
     for account in accountsReader:
         logger.warning('Cookie etopfun: {}'.format(account['etopfun_cookie']))
 

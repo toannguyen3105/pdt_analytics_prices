@@ -46,7 +46,10 @@ def update_items_trade_it(account):
         filename = 'prices.csv'
         tempfile = NamedTemporaryFile(mode='w', delete=False)
 
-        fields = ['name', 'etopfun_price', 'tradeit_price', 'swap_price', 'loot_price', 'recommend']
+        fields = [
+            'name', 'etopfun_price', 'tradeit_price', 'swap_price',
+            'loot_price', 'recommend', 'buff_price', 'empire_price'
+        ]
 
         with open(filename, 'r', encoding='UTF8') as csvfile, tempfile:
             reader = csv.DictReader(csvfile, fieldnames=fields)
@@ -62,7 +65,9 @@ def update_items_trade_it(account):
                     'tradeit_price': row['tradeit_price'] if row['tradeit_price'] else 0,
                     'swap_price': row['swap_price'],
                     'loot_price': row['loot_price'],
-                    'recommend': row['recommend']
+                    'recommend': row['recommend'],
+                    'buff_price': row['buff_price'],
+                    'empire_price': row['empire_price']
                 }
                 writer.writerow(row)
 

@@ -3,6 +3,7 @@ from tempfile import NamedTemporaryFile
 import csv
 import shutil
 from loggingUtil import logger
+from utils.prices import calculate_price
 
 
 def recommend_all_price():
@@ -12,11 +13,16 @@ def recommend_all_price():
     TRADEIT_RATE = os.getenv("TRADEIT_RATE")
     SWAP_RATE = os.getenv("SWAP_RATE")
     LOOT_RATE = os.getenv("LOOT_RATE")
+    BUFF_RATE = os.getenv("BUFF_RATE")
+    EMPIRE_RATE = os.getenv("EMPIRE_RATE")
 
     filename = 'prices.csv'
     tempfile = NamedTemporaryFile(mode='w', delete=False)
 
-    fields = ['name', 'etopfun_price', 'tradeit_price', 'swap_price', 'loot_price', 'recommend']
+    fields = [
+        'name', 'etopfun_price', 'tradeit_price', 'swap_price',
+        'loot_price', 'recommend', 'buff_price', 'empire_price'
+    ]
 
     with open(filename, 'r', encoding='UTF8') as csvfile, tempfile:
         reader = csv.DictReader(csvfile, fieldnames=fields)
@@ -59,7 +65,9 @@ def recommend_all_price():
                 'tradeit_price': row['tradeit_price'],
                 'swap_price': row['swap_price'],
                 'loot_price': row['loot_price'],
-                'recommend': row['recommend']
+                'recommend': row['recommend'],
+                'buff_price': calculate_price(x, BUFF_RATE),
+                'empire_price': calculate_price(x, EMPIRE_RATE),
             }
             writer.writerow(row)
 

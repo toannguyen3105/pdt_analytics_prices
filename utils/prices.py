@@ -1,7 +1,10 @@
 import csv
 import os
 
-header = ['name', 'etopfun_price', 'tradeit_price', 'swap_price', 'loot_price', 'recommend']
+header = [
+    'name', 'etopfun_price', 'tradeit_price', 'swap_price',
+    'loot_price', 'recommend', 'buff_price', 'empire_price'
+]
 
 
 def generate_data(items):
@@ -24,3 +27,7 @@ def create_price_csv(mode, items):
 
         # write multiple rows
         writer.writerows(generate_data(items))
+
+
+def calculate_price(price, rate):
+    return format(float(price) / float(rate), '.2f')

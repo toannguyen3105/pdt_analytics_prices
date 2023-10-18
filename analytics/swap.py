@@ -51,7 +51,7 @@ def update_items_swap(account):
                     'name': row['name'],
                     'etopfun_price': row['etopfun_price'],
                     'tradeit_price': row['tradeit_price'],
-                    'swap_price': row['swap_price'],
+                    'swap_price': row['swap_price'] if row['swap_price'] else 0,
                     'loot_price': row['loot_price'],
                     'recommend': row['recommend']
                 }

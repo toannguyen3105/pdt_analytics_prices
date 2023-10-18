@@ -12,7 +12,7 @@ def update_items_trade_it(account):
         'authority': 'tradeit.gg',
         'accept': 'application/json, text/plain, */*',
         'accept-language': 'en-US,en;q=0.9',
-        'cookie': 'i18n_redirected=en; _scid=198c3981-3e0a-4f3a-a43d-0c63b6dcee65; sessionid=s%3A5ES3rMzULymGBzJyBWNezpInXcxPY7rb.QHDvghUJI3o57oXRcWxm7mCI%2F8AWVDSofA38tqcvliI; vuex={%22inventory%22:{%22siteInventory%22:{%22filters%22:{%22gameId%22:730}}%2C%22userInventory%22:{%22filters%22:{}}}%2C%22users%22:{%22analyticsAttributes%22:null}}; _ga=GA1.1.472040037.1697472600; ga4={"client_id":"472040037.1697472600"}; _rdt_uuid=1697472600369.10b0bb31-f15e-4966-9a55-ab7db108e5d4; _tt_enable_cookie=1; _ttp=xmmnByPZas_rlMl5oiwFIi8Ddzh; _sctr=1%7C1697389200000; tmr_lvid=03be2befee1a1eccbd6b7bd2184c9be6; tmr_lvidTS=1697472600567; _ym_uid=1697472601214323686; _ym_d=1697472601; _ym_isad=2; _fbp=fb.1.1697472602360.392532867; socketuuid=975c5519-7bd5-44b8-9c78-706be18a4abd; moe_uuid=314ef520-bd8b-4700-9aad-74fef7afc63e; tmr_detect=0%7C1697472682369; __stripe_mid=17666093-1e15-4289-befd-b38ca3f8611087b342; __stripe_sid=f3d1f4c8-9150-49fa-b275-310113383d4cf563ed; OPT_IN_SHOWN_TIME=1697472799369; SOFT_ASK_STATUS=%7B%22actualValue%22%3A%22shown%22%2C%22MOE_DATA_TYPE%22%3A%22string%22%7D; _uetsid=74c1f4606c3e11eea699e3732089e824; _uetvid=74c218406c3e11ee8f8c579f11a0078a; _scid_r=198c3981-3e0a-4f3a-a43d-0c63b6dcee65; _ga_RFHNPQTN51=GS1.1.1697472600.1.1.1697472973.59.0.0',
+        'cookie': account.get('tradeit_cookie'),
         'if-none-match': 'W/"d470-Vwf6dM+IjnUu1VT7GcuJXcnof/o"',
         'referer': 'https://tradeit.gg/csgo/trade',
         'sec-ch-ua': '"Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"',
@@ -59,7 +59,7 @@ def update_items_trade_it(account):
                 row = {
                     'name': row['name'],
                     'etopfun_price': row['etopfun_price'],
-                    'tradeit_price': row['tradeit_price'],
+                    'tradeit_price': row['tradeit_price'] if row['tradeit_price'] else 0,
                     'swap_price': row['swap_price'],
                     'loot_price': row['loot_price'],
                     'recommend': row['recommend']

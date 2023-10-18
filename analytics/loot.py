@@ -50,7 +50,7 @@ def update_items_loot(account):
                     'etopfun_price': row['etopfun_price'],
                     'tradeit_price': row['tradeit_price'],
                     'swap_price': row['swap_price'],
-                    'loot_price': row['loot_price'],
+                    'loot_price': row['loot_price'] if row['loot_price'] else 0,
                     'recommend': row['recommend']
                 }
                 writer.writerow(row)

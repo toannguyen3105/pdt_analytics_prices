@@ -44,7 +44,7 @@ def update_items_trade_it(account):
         unique_items = list({item['name']: item for item in all_items}.values())
 
         filename = 'prices.csv'
-        tempfile = NamedTemporaryFile(mode='w', delete=False)
+        tempfile = NamedTemporaryFile(mode='w', encoding='UTF8', delete=False)
 
         fields = [
             'name', 'etopfun_price', 'tradeit_price', 'swap_price',

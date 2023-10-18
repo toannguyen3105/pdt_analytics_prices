@@ -17,7 +17,7 @@ def recommend_all_price():
     EMPIRE_RATE = os.getenv("EMPIRE_RATE")
 
     filename = 'prices.csv'
-    tempfile = NamedTemporaryFile(mode='w', delete=False)
+    tempfile = NamedTemporaryFile(mode='w', encoding='UTF8', delete=False)
 
     fields = [
         'name', 'etopfun_price', 'tradeit_price', 'swap_price',

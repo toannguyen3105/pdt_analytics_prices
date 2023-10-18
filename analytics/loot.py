@@ -33,7 +33,7 @@ def update_items_loot(account):
     res = response.json()
     if res:
         filename = 'prices.csv'
-        tempfile = NamedTemporaryFile(mode='w', delete=False)
+        tempfile = NamedTemporaryFile(mode='w', encoding='UTF8', delete=False)
 
         fields = [
             'name', 'etopfun_price', 'tradeit_price', 'swap_price',
